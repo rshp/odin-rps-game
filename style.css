@@ -24,6 +24,20 @@ footer{
 button {
     width: 100px;
     height: 100px;
-    
     text-align: center;
 }
+
+.user-buttons-container,
+.computer-buttons-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+}
+
+.buttons-wrapper{
+    display: flex;
+    justify-content: space-around;
+    gap: 5rem;
+}
+

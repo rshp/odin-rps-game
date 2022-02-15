@@ -14,28 +14,27 @@ Attach mouse click listeners to buttoons
         - Display result
 */
 
+const userButtons = document.querySelectorAll('.user-buttons-container > button');
+userButtons.forEach(element => {
+    element.addEventListener('click', processUserInput)
+});
 
-function userPlay() {
-    let userInput = prompt("input stuff");
-    userInput = userInput.toLowerCase();
-    switch (userInput) {
-        case "r":
-        case "rock":
+function processUserInput(event){
+    let playerSelection = userPlay(event);
+    console.log(playerSelection);
+}
+
+function userPlay(event) {
+    switch (event.target.id) {
+        case "button-rock":
             return "rock";
-            break;
-        case "p":
-        case "paper":
+        case "button-paper":
             return "paper";
-            break;
-        case "s":
-        case "scissors":
+        case "button-scissors":
             return "scissors";
-            break;
-        default:
-            console.log("Cant understand you, try again");
-            return userPlay();
     }
 }
+
 //Roll computer result
 //Convert computer result to uniform format
 function computerPlay() {
@@ -57,33 +56,33 @@ function computerPlay() {
 //Determine winner
 function playSingleRound(playerSelection, computerSelection) {
     if (
-        ((playerSelection=="rock") && (computerSelection=="scissors")) ||
-        ((playerSelection=="paper") && (computerSelection=="rock")) ||
-        ((playerSelection=="scissors") && (computerSelection=="paper"))
-        ){
+        ((playerSelection == "rock") && (computerSelection == "scissors")) ||
+        ((playerSelection == "paper") && (computerSelection == "rock")) ||
+        ((playerSelection == "scissors") && (computerSelection == "paper"))
+    ) {
         return "player";
-        }
-    else if (playerSelection===computerSelection){
+    }
+    else if (playerSelection === computerSelection) {
         return "tie";
     }
     return "computer"
 }
 //Run game until counter reaches 5
 //Return winner of 5 games (or tie)
-function game(){
-    let userWinCount=0;
-    let computerWinCount=0;
-    for (let i=0; i<5; i++) {
-        playerSelection=userPlay();
-        computerSelection=computerPlay();
+function game() {
+    let userWinCount = 0;
+    let computerWinCount = 0;
+    for (let i = 0; i < 5; i++) {
+        playerSelection = userPlay();
+        computerSelection = computerPlay();
         result = playSingleRound(playerSelection, computerSelection);
-        if (result == "player") {userWinCount++}
-        else if (result == "computer") {computerWinCount++} ;
+        if (result == "player") { userWinCount++ }
+        else if (result == "computer") { computerWinCount++ };
         //console.table ([playerSelection,computerSelection,result,userWinCount,computerWinCount]);
     }
-    return userWinCount>computerWinCount ? "player"
-         : userWinCount<computerWinCount ? "computer"
-         : "tie";
+    return userWinCount > computerWinCount ? "player"
+        : userWinCount < computerWinCount ? "computer"
+            : "tie";
 }
 
 

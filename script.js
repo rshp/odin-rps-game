@@ -36,6 +36,7 @@ function processUserInput(event){
         userWinCount++ }
     else if (result == "computer"){
         computerWinCount++ };
+    updateScoreDisplay([userWinCount,computerWinCount,gameCount]);
     console.log(gameCount);
     if (gameCount==GAMES_MAX_COUNT) {
         gameResult = checkGameWinner();
@@ -97,7 +98,11 @@ function checkGameWinner() {
             : "tie";
 }
 
-
+function updateScoreDisplay(score) {
+    document.getElementById('user-win-counter').textContent = score[0];
+    document.getElementById('computer-win-counter').textContent = score[1];
+    document.getElementById('round').textContent = score[2];
+}
 
 
 

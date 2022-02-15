@@ -1,24 +1,20 @@
-//This is a console version of the game
-//Pseudocode
+//This is a ui version of the game
+/*      Pseudocode
+Attach mouse click listeners to buttoons
+    - If clicked
+        - Animate user selection
+        - Roll computer selection
+        - Idle half-second
+        - Animate computer selection
+        - Determine winner
+        - Update counter of wins for each player
+        - Display result
+    - Number of games reached 5
+        - Determine game winner
+        - Display result
+*/
 
-//Initialise numer of wins for player and computer
 
-//Run game until counter reaches 5
-//Prompt user for input:
-//User can input different case strings as well as shortcut r/p/s.
-//parse user inputs to uniform format
-//Roll computer result
-//Convert computer result to uniform format
-//Compare user and computer results
-//Determine winner
-//Print user choise, computer choice and win count
-//Update counter of wins for each player
-//declare winner and end game
-
-
-//Prompt user for input:
-//User can input different case strings as well as shortcut r/p/s.
-//parse user inputs to uniform format
 function userPlay() {
     let userInput = prompt("input stuff");
     userInput = userInput.toLowerCase();

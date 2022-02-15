@@ -14,14 +14,36 @@ Attach mouse click listeners to buttoons
         - Display result
 */
 
+const GAMES_MAX_COUNT = 5;
+let userWinCount = 0;
+let computerWinCount = 0;
+let gameCount = 0;
+let gameResult = undefined;
+
 const userButtons = document.querySelectorAll('.user-buttons-container > button');
 userButtons.forEach(element => {
     element.addEventListener('click', processUserInput)
 });
 
+
+
 function processUserInput(event){
     let playerSelection = userPlay(event);
-    console.log(playerSelection);
+    let computerSelection = computerPlay();
+    let result = playSingleRound(playerSelection, computerSelection);
+    gameCount++;
+    if (result == "player"){
+        userWinCount++ }
+    else if (result == "computer"){
+        computerWinCount++ };
+    console.log(gameCount);
+    if (gameCount==GAMES_MAX_COUNT) {
+        gameResult = checkGameWinner();
+        console.log(gameResult);
+        gameCount = 0;
+        userWinCount = 0;
+        computerWinCount = 0;
+    }
 }
 
 function userPlay(event) {
@@ -69,17 +91,7 @@ function playSingleRound(playerSelection, computerSelection) {
 }
 //Run game until counter reaches 5
 //Return winner of 5 games (or tie)
-function game() {
-    let userWinCount = 0;
-    let computerWinCount = 0;
-    for (let i = 0; i < 5; i++) {
-        playerSelection = userPlay();
-        computerSelection = computerPlay();
-        result = playSingleRound(playerSelection, computerSelection);
-        if (result == "player") { userWinCount++ }
-        else if (result == "computer") { computerWinCount++ };
-        //console.table ([playerSelection,computerSelection,result,userWinCount,computerWinCount]);
-    }
+function checkGameWinner() {
     return userWinCount > computerWinCount ? "player"
         : userWinCount < computerWinCount ? "computer"
             : "tie";

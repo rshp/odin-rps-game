@@ -25,8 +25,6 @@ userButtons.forEach(element => {
     element.addEventListener('click', processUserInput)
 });
 
-
-
 function processUserInput(event){
     let playerSelection = userPlay(event);
     let computerSelection = computerPlay();
@@ -40,7 +38,6 @@ function processUserInput(event){
     console.log(gameCount);
     if (gameCount==GAMES_MAX_COUNT) {
         gameResult = checkGameWinner();
-        console.log(gameResult);
         gameCount = 0;
         userWinCount = 0;
         computerWinCount = 0;

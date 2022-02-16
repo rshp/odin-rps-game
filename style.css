@@ -1,15 +1,15 @@
 body {
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     color: aliceblue;
-    padding: 0;
-    margin: 0;
+    padding: 0px;
+    margin: 0px;
     background: rgb(5,5,5);
     background: linear-gradient(0deg, rgba(5,5,5,1) 0%, rgba(108,108,108,1) 50%, rgba(0,0,0,1) 100%);
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
-    min-height: 100vh;
+    height: 100vh;
 }
 
 header,
@@ -21,9 +21,13 @@ footer{
     width: 100%;
 }
 
+footer {
+    margin: 0px;
+    margin-top: auto;
+}
+
 button {
     width: 100px;
-    height: 100px;
     text-align: center;
 }
 
@@ -39,5 +43,27 @@ button {
     display: flex;
     justify-content: space-around;
     gap: 5rem;
+    flex: 1;
 }
 
+#score-container {
+    flex: 0.5;
+    display: flex;
+    flex-wrap: wrap;
+    
+    
+
+    
+}
+
+#score-title {
+    width: 100%;
+    text-align: center;
+}
+#user-score,
+#computer-score,
+#user-win-counter,
+#computer-win-counter{
+    width: 50%;
+    text-align: center;
+}

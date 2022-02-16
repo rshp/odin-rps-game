@@ -1,5 +1,12 @@
+@import url('https://fonts.googleapis.com/css2?family=Emilys+Candy&display=swap');
+
+* {
+    box-sizing: border-box;
+}
+
 body {
-    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-family: 'Emilys Candy', cursive,'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-size: 5vmin;
     color: aliceblue;
     padding: 0px;
     margin: 0px;
@@ -10,15 +17,19 @@ body {
     justify-content: space-between;
     align-items: center;
     height: 100vh;
+    
 }
 
 header,
 footer{
+    
     background-color: rgb(158, 158, 158);
     display: flex;
     justify-content: center;
     align-items: center;
     width: 100%;
+    padding: 1rem;
+    color: midnightblue;
 }
 
 footer {
@@ -27,22 +38,28 @@ footer {
 }
 
 button {
-    width: 100px;
+    
+    max-height: 20rem;
     text-align: center;
+    flex: 1;
+    
 }
 
 .user-buttons-container,
 .computer-buttons-container{
+    width: 20%;
     display: flex;
     flex-direction: column;
-    align-items: center;
+    
     gap: 1rem;
+    
 }
 
 .buttons-wrapper{
     display: flex;
     justify-content: space-around;
     gap: 5rem;
+    width: 50%;
     flex: 1;
 }
 
@@ -50,15 +67,13 @@ button {
     flex: 0.5;
     display: flex;
     flex-wrap: wrap;
-    
-    
-
-    
+    width: 50%;
 }
 
 #score-title {
     width: 100%;
     text-align: center;
+    padding: 1rem;
 }
 #user-score,
 #computer-score,
@@ -66,4 +81,42 @@ button {
 #computer-win-counter{
     width: 50%;
     text-align: center;
+}
+
+button {
+    background-image: linear-gradient(to right, #29323c, #485563, #2b5876, #4e4376);
+    box-shadow: 0 4px 15px 0 rgba(45, 54, 65, 0.75);
+    width: 100%;
+    font-family: 'Emilys Candy', cursive;
+    font-size: 2rem;
+    font-weight: 600;
+    color: #fff;
+    text-align:center;
+    border: none;
+    background-size: 300% 100%;
+    border-radius: 50px;
+    border-radius: 50px;
+    transition: all .4s ease-in-out;
+}
+.user-buttons-container > button{
+    cursor: pointer;
+}
+
+.user-buttons-container > button:hover {
+    background-position: 100% 0;
+    transition: all .3s ease-in-out;
+}
+
+button:focus {
+    outline: 0px;
+}
+
+.button-selected {
+    flex-grow: 3;
+    background-position: 100% 0;
+    transition: all .3s ease-in-out;
+}
+
+.disabled {
+    pointer-events: none;
 }

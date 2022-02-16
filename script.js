@@ -25,18 +25,37 @@ userButtons.forEach(element => {
     element.addEventListener('click', processUserInput)
 });
 
-function processUserInput(event){
+function processUserInput(event) {
+    userButtons.forEach(element => {
+        element.removeEventListener('click', processUserInput);
+        element.classList.add('disabled');
+    });
     let playerSelection = userPlay(event);
+    document.querySelector(`.user-buttons-container > #${event.target.id}`).classList.add('button-selected');
     let computerSelection = computerPlay();
-    let result = playSingleRound(playerSelection, computerSelection);
-    gameCount++;
-    if (result == "player"){
-        userWinCount++ }
-    else if (result == "computer"){
-        computerWinCount++ };
-    updateScoreDisplay([userWinCount,computerWinCount,gameCount]);
-    console.log(gameCount);
-    if (gameCount==GAMES_MAX_COUNT) {
+    setTimeout(() => {
+        document.querySelector(`.computer-buttons-container > #button-${computerSelection}`).classList.add('button-selected');
+    }, 1000);
+
+    setTimeout(() => {
+        let result = playSingleRound(playerSelection, computerSelection);
+        gameCount++;
+        if (result == "player") {
+            userWinCount++
+        }
+        else if (result == "computer") {
+            computerWinCount++
+        };
+        updateScoreDisplay([userWinCount, computerWinCount, gameCount]);
+        document.querySelector(`.computer-buttons-container > #button-${computerSelection}`).classList.remove('button-selected');
+        document.querySelector(`.user-buttons-container > #${event.target.id}`).classList.remove('button-selected');
+
+        userButtons.forEach(element => {
+            element.addEventListener('click', processUserInput);
+            element.classList.remove('disabled');
+        });
+    }, 2000);
+    if (gameCount == GAMES_MAX_COUNT) {
         gameResult = checkGameWinner();
         gameCount = 0;
         userWinCount = 0;

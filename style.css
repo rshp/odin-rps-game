@@ -39,7 +39,7 @@ footer {
 
 .user-buttons-container,
 .computer-buttons-container{
-    width: 20%;
+    width: 30%;
     display: flex;
     flex-direction: column;
     
@@ -51,8 +51,9 @@ footer {
     display: flex;
     justify-content: space-around;
     gap: 5rem;
-    width: 50%;
+    width: 90%;
     flex: 1;
+    padding: 1rem;
 }
 
 #score-container {
@@ -75,7 +76,8 @@ footer {
     text-align: center;
 }
 
-button {
+button,
+.reset-button {
     background-image: linear-gradient(to right, #29323c, #485563, #2b5876, #4e4376);
     box-shadow: 0 4px 15px 0 rgba(45, 54, 65, 0.75);
     flex: 1;
@@ -110,4 +112,41 @@ button:focus {
 
 .disabled {
     pointer-events: none;
+}
+
+.modal {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    opacity: 0;
+    visibility: hidden;
+    transform: scale(1.1);
+    transition: visibility 0s linear 0.25s, opacity 0.25s 0s, transform 0.25s;
+}
+
+.modal-content {
+    position: absolute;
+    text-align: center;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 1rem;
+    width: 24rem;
+    border-radius: 0.5rem;
+}
+
+.show-modal {
+    opacity: 1;
+    visibility: visible;
+    transform: scale(1.0);
+    transition: visibility 0s linear 0s, opacity 0.25s 0s, transform 0.25s;
+}
+
+.reset-button{
+    padding: 1rem;
+    cursor: pointer;
+    font-size: 5vh;
 }

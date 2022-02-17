@@ -24,30 +24,42 @@ userButtons.forEach(element => {
     element.addEventListener('click', processUserInput)
 });
 
+const modal = document.querySelector(".modal");
+const trigger = document.querySelector(".trigger");
+const resetButton = document.querySelector(".reset-button");
+
+function displayPopup(gameResult) {
+    document.querySelector(".modal-content > h1").textContent = gameResult + ` wins`;
+    modal.classList.toggle("show-modal");
+}
+
+resetButton.addEventListener("click", () => {modal.classList.toggle("show-modal")});
+
 function processUserInput(event) {
     userButtons.forEach(element => {
         element.removeEventListener('click', processUserInput);
         element.classList.add('disabled');
     });
     let playerSelection = userPlay(event);
-    document.querySelector(`.user-buttons-container > #${event.target.id}`).classList.add('button-selected');
+    
     let computerSelection = computerPlay();
+    let result = playSingleRound(playerSelection, computerSelection);
+    if (result == "player") {
+        userWinCount++
+    }
+    else if (result == "computer") {
+        computerWinCount++
+    };
+    
+    document.querySelector(`.user-buttons-container > #${event.target.id}`).classList.add('button-selected');                   //highlight selection
     setTimeout(() => {
-        document.querySelector(`.computer-buttons-container > #button-${computerSelection}`).classList.add('button-selected');
+        document.querySelector(`.computer-buttons-container > #button-${computerSelection}`).classList.add('button-selected');   //highlight selection
     }, 500);
 
     setTimeout(() => {
-        let result = playSingleRound(playerSelection, computerSelection);
-        if (result == "player") {
-            userWinCount++
-        }
-        else if (result == "computer") {
-            computerWinCount++
-        };
         updateScoreDisplay([userWinCount, computerWinCount]);
-        document.querySelector(`.computer-buttons-container > #button-${computerSelection}`).classList.remove('button-selected');
-        document.querySelector(`.user-buttons-container > #${event.target.id}`).classList.remove('button-selected');
-
+        document.querySelector(`.computer-buttons-container > #button-${computerSelection}`).classList.remove('button-selected');   //reset selection
+        document.querySelector(`.user-buttons-container > #${event.target.id}`).classList.remove('button-selected');                //reset selection
         userButtons.forEach(element => {
             element.addEventListener('click', processUserInput);
             element.classList.remove('disabled');
@@ -60,8 +72,6 @@ function processUserInput(event) {
             updateScoreDisplay([userWinCount, computerWinCount]);
         }
     }, 1000);
-    
-
 }
 
 function userPlay(event) {
@@ -116,8 +126,3 @@ function updateScoreDisplay(score) {
     document.getElementById('user-win-counter').textContent = score[0];
     document.getElementById('computer-win-counter').textContent = score[1];
 }
-
-function displayPopup (gameResult){
-    console.log(gameResult);
-}
-

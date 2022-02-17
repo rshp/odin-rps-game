@@ -37,14 +37,6 @@ footer {
     margin-top: auto;
 }
 
-button {
-    
-    max-height: 20rem;
-    text-align: center;
-    flex: 1;
-    
-}
-
 .user-buttons-container,
 .computer-buttons-container{
     width: 20%;
@@ -86,15 +78,14 @@ button {
 button {
     background-image: linear-gradient(to right, #29323c, #485563, #2b5876, #4e4376);
     box-shadow: 0 4px 15px 0 rgba(45, 54, 65, 0.75);
-    width: 100%;
+    flex: 1;
     font-family: 'Emilys Candy', cursive;
-    font-size: 2rem;
+    font-size: 1.7vw;
     font-weight: 600;
     color: #fff;
     text-align:center;
     border: none;
     background-size: 300% 100%;
-    border-radius: 50px;
     border-radius: 50px;
     transition: all .4s ease-in-out;
 }

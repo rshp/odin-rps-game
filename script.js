@@ -14,10 +14,9 @@ Attach mouse click listeners to buttoons
         - Display result
 */
 
-const GAMES_MAX_COUNT = 5;
+const MAX_WIN_COUNT = 5;
 let userWinCount = 0;
 let computerWinCount = 0;
-let gameCount = 0;
 let gameResult = undefined;
 
 const userButtons = document.querySelectorAll('.user-buttons-container > button');
@@ -35,18 +34,17 @@ function processUserInput(event) {
     let computerSelection = computerPlay();
     setTimeout(() => {
         document.querySelector(`.computer-buttons-container > #button-${computerSelection}`).classList.add('button-selected');
-    }, 1000);
+    }, 500);
 
     setTimeout(() => {
         let result = playSingleRound(playerSelection, computerSelection);
-        gameCount++;
         if (result == "player") {
             userWinCount++
         }
         else if (result == "computer") {
             computerWinCount++
         };
-        updateScoreDisplay([userWinCount, computerWinCount, gameCount]);
+        updateScoreDisplay([userWinCount, computerWinCount]);
         document.querySelector(`.computer-buttons-container > #button-${computerSelection}`).classList.remove('button-selected');
         document.querySelector(`.user-buttons-container > #${event.target.id}`).classList.remove('button-selected');
 
@@ -54,13 +52,16 @@ function processUserInput(event) {
             element.addEventListener('click', processUserInput);
             element.classList.remove('disabled');
         });
-    }, 2000);
-    if (gameCount == GAMES_MAX_COUNT) {
-        gameResult = checkGameWinner();
-        gameCount = 0;
-        userWinCount = 0;
-        computerWinCount = 0;
-    }
+        if ((userWinCount == MAX_WIN_COUNT) || (computerWinCount==MAX_WIN_COUNT)) {
+            gameResult = checkGameWinner();
+            displayPopup(gameResult);
+            userWinCount = 0;
+            computerWinCount = 0;
+            updateScoreDisplay([userWinCount, computerWinCount]);
+        }
+    }, 1000);
+    
+
 }
 
 function userPlay(event) {
@@ -81,14 +82,11 @@ function computerPlay() {
     switch (rnd) {
         case 0:
             return "rock";
-            break;
-        case 1:
+         case 1:
             return "paper";
-            break;
-        case 2:
+         case 2:
             return "scissors";
-            break;
-    }
+     }
 }
 
 //Compare user and computer results
@@ -117,8 +115,9 @@ function checkGameWinner() {
 function updateScoreDisplay(score) {
     document.getElementById('user-win-counter').textContent = score[0];
     document.getElementById('computer-win-counter').textContent = score[1];
-    document.getElementById('round').textContent = score[2];
 }
 
-
+function displayPopup (gameResult){
+    console.log(gameResult);
+}
 
